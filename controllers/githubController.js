@@ -16,7 +16,7 @@ const getFileSHA = async () => {
   }
 };
 
-const createCommit = async (req, res) => {
+const createCommit = async (req = null, res = null) => {
   try {
     const date = new Date().toISOString().split('T')[0];
     const content = Buffer.from(`Commit on ${date}`).toString('base64');
@@ -39,9 +39,11 @@ const createCommit = async (req, res) => {
       }
     );
 
-    // Respond with success message if the commit was successful
+    // Log success if running without a response object
     if (res) {
       res.status(200).json({ message: 'File committed successfully!' });
+    } else {
+      console.log('File committed successfully!');
     }
   } catch (error) {
     console.error("Error committing file:", error.response?.data || error.message);

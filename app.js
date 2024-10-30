@@ -1,8 +1,8 @@
 // app.js
 require('dotenv').config();
+require('./cronJob');
 const express = require('express');
 const githubRoutes = require('./routes/githubRoutes');
-require('./cronJob');
 
 const app = express();
 app.use(express.json());
